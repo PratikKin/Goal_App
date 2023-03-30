@@ -12,7 +12,7 @@ class SplashScreen extends StatelessWidget {
           primaryColorLight: Colors.white,
           primaryColorDark: Colors.black,
           appBarTheme: AppBarTheme(
-            color: Colors.green,
+            color: Colors.black26,
           ),
           colorScheme: ColorScheme.fromSwatch()
               .copyWith(secondary: Color(0xFFE87CE4))

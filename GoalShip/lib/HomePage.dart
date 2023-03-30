@@ -1,3 +1,4 @@
+import 'package:bottom_drawer/bottom_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -15,6 +16,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // For bottom drawer use modalBottomSheet
+  void showAddGoal(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          height: MediaQuery.of(ctx).size.height * 1.0,
+          child: Add_Goal(),
+        );
+      },
+      useSafeArea: true,
+      isScrollControlled: true,
+      shape: CircleBorder(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,10 +79,7 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.only(bottom: 15.0),
                 child: GestureDetector(
                   onTap: () {
-                    setState(() {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => Add_Goal()));
-                    });
+                    showAddGoal(context);
                   },
                   child: CircleAvatar(
                     backgroundColor: themeColour,

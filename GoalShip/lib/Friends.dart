@@ -15,6 +15,24 @@ class PersonalPage extends StatefulWidget {
 }
 
 class _PersonalPageState extends State<PersonalPage> {
+  void showAddGoal(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          height: MediaQuery.of(ctx).size.height * 1.0,
+          child: Add_Goal(),
+        );
+      },
+      useSafeArea: true,
+      isScrollControlled: true,
+      shape: CircleBorder(),
+    );
+  }
+
   final Color themeColour = Color(0xFFE8B3E4);
   @override
   Widget build(BuildContext context) {
@@ -24,7 +42,7 @@ class _PersonalPageState extends State<PersonalPage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Home",
+            Text("Personal",
                 style:
                     TextStyle(fontWeight: FontWeight.bold, color: TextColour)),
             GestureDetector(
@@ -96,10 +114,7 @@ class _PersonalPageState extends State<PersonalPage> {
                 padding: const EdgeInsets.only(bottom: 15.0),
                 child: GestureDetector(
                   onTap: () {
-                    setState(() {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => Add_Goal()));
-                    });
+                    showAddGoal(context);
                   },
                   child: CircleAvatar(
                     backgroundColor: themeColour,
