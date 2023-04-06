@@ -1,10 +1,11 @@
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'HomePage.dart';
-import 'Friends.dart';
-import 'Settings.dart';
+
 import 'Add_Goal.dart';
+import 'Friends.dart';
+import 'HomePage.dart';
+import 'Settings.dart';
 
 class Calender_Page extends StatefulWidget {
   @override
@@ -12,6 +13,9 @@ class Calender_Page extends StatefulWidget {
 }
 
 class _CalenderState extends State<Calender_Page> {
+  int completedTask = 0;
+  int days_missed = 0;
+
   void showAddGoal(BuildContext ctx) {
     showModalBottomSheet(
       context: ctx,
@@ -76,23 +80,41 @@ class _CalenderState extends State<Calender_Page> {
               )
             ],
           )),
-      body: Container(
-        margin: EdgeInsets.all(20.0),
-        height: 430.0,
-        decoration: BoxDecoration(
-            border: Border.all(),
-            borderRadius: BorderRadius.circular(20.0),
-            color: Colors.white70),
-        child: Container(
-          margin: EdgeInsets.all(10.0),
-          child: TableCalendar(
-            calendarStyle: CalendarStyle(
-                todayDecoration: BoxDecoration(color: Colors.blue),
-                selectedDecoration: BoxDecoration(color: Colors.amber)),
-            firstDay: DateTime.utc(2023, 1, 1),
-            focusedDay: DateTime.utc(2023, 1, 1),
-            lastDay: DateTime.utc(2023, 12, 31),
-          ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              margin: EdgeInsets.all(20.0),
+              height: 430.0,
+              decoration: BoxDecoration(
+                  border: Border.all(),
+                  borderRadius: BorderRadius.circular(20.0),
+                  color: Colors.white70),
+              child: Container(
+                margin: EdgeInsets.all(10.0),
+                child: TableCalendar(
+                  calendarStyle: CalendarStyle(
+                      todayDecoration: BoxDecoration(color: Colors.blue),
+                      selectedDecoration: BoxDecoration(color: Colors.amber)),
+                  firstDay: DateTime.utc(2023, 1, 1),
+                  focusedDay: DateTime.utc(2023, 1, 1),
+                  lastDay: DateTime.utc(2023, 12, 31),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: Text(
+                "Your Progress",
+                style: TextStyle(
+                    color: TextColour,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0),
+              ),
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: BottomAppBar(

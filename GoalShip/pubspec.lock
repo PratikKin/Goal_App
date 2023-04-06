@@ -17,6 +17,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.10.0"
+  bloc:
+    dependency: transitive
+    description:
+      name: bloc
+      sha256: "6f1b87b6eca9041d5672b6e29273cd1594db48ebb66fd2471066e9f3c3a516bd"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.2.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -25,14 +33,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
-  bottom_drawer:
+  calendar_appbar:
     dependency: "direct main"
     description:
-      name: bottom_drawer
-      sha256: "7faeef93d48995f94b7f2c517fb312809d645343b3e6771b3de777946c18e8a9"
+      name: calendar_appbar
+      sha256: a55866ff00cacee2fd3832f9fff0e0dab6bef136d9530c754436a9bbcbaba1ec
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.5"
+    version: "0.0.6"
   characters:
     dependency: transitive
     description:
@@ -57,6 +65,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.17.0"
+  cr_calendar:
+    dependency: "direct main"
+    description:
+      name: cr_calendar
+      sha256: "21ca25a676bfca835f476003726b3748374ea8b36e217d02501407630afc13e5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0+1"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -94,6 +110,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_bloc:
+    dependency: transitive
+    description:
+      name: flutter_bloc
+      sha256: cdd1351ced09eeb46cfa7946e095b7679344af927415ca9cd972928fa6d5b23f
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.3.3"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -120,14 +144,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "10.4.0"
+  inline_calendar:
+    dependency: "direct main"
+    description:
+      name: inline_calendar
+      sha256: daa38570642683fa0f0852aa914aef0cd64023ff4873378032ab5ae509277f4e
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2"
   intl:
     dependency: transitive
     description:
       name: intl
-      sha256: a3715e3bc90294e971cb7dc063fbf3cd9ee0ebf8604ffeafabd9e6f16abbdbe6
+      sha256: "910f85bce16fb5c6f614e117efa303e85a1731bb0081edf3604a2ae6e9a3cc91"
       url: "https://pub.dev"
     source: hosted
-    version: "0.18.0"
+    version: "0.17.0"
+  jiffy:
+    dependency: transitive
+    description:
+      name: jiffy
+      sha256: "85172c4fc975a50224521c05bf43abc845288863b19d91bd3c221a96a8785dd3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.0"
   js:
     dependency: transitive
     description:
@@ -248,6 +288,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.5"
+  scrollable_positioned_list:
+    dependency: transitive
+    description:
+      name: scrollable_positioned_list
+      sha256: ca7fcaa743db712d4f7b1580526f494d0093c77a721a65705ee51fbeac7a2bd3
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.5"
+  shamsi_date:
+    dependency: transitive
+    description:
+      name: shamsi_date
+      sha256: "5df195a0b7794b7d4a8dc9321244400147896def157b7530c5b8a2f9cfc6a7a4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.15.0"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -353,10 +409,10 @@ packages:
     dependency: "direct main"
     description:
       name: table_calendar
-      sha256: "1e3521a3e6d3fc7f645a58b135ab663d458ab12504f1ea7f9b4b81d47086c478"
+      sha256: "7f1270313c0cdb245b583ed8518982c01d4a7e95869b3c30abcbae3b642c45d0"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.9"
+    version: "3.0.8"
   term_glyph:
     dependency: transitive
     description:
