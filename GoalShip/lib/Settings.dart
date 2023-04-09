@@ -153,7 +153,7 @@ class _Settings_PageState extends State<Settings_Page> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Manage friends",
+                            "Profile setting",
                             style: TextStyle(color: Colors.black),
                           ),
                           SizedBox(

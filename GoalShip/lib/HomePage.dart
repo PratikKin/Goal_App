@@ -1,14 +1,13 @@
-import 'package:calendar_appbar/calendar_appbar.dart';
+import 'package:bottom_drawer/bottom_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:inline_calendar/inline_calendar.dart';
 import 'Calender.dart';
 import 'Settings.dart';
 import 'Friends.dart';
 import 'Add_Goal.dart';
 
-Color themeColour = Color(0xA63DC5DB);
+Color themeColour = Color(0xFFE87CE4);
 Color themeBackGrnd = Colors.white;
 
 class HomePage extends StatefulWidget {
@@ -17,8 +16,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late CalendarCubit _controller;
-
   // For bottom drawer use modalBottomSheet
   void showAddGoal(BuildContext ctx) {
     showModalBottomSheet(
@@ -41,14 +38,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xA63DC5DB),
-        title: Text("GoalShip"),
-        bottom: InlineCalendar(
-          controller: _controller,
-          onChange: (DateTime d) => print(d),
-        ),
-      ),
       body: Container(
         color: themeBackGrnd,
       ),
@@ -135,18 +124,5 @@ class _HomePageState extends State<HomePage> {
             ],
           )),
     );
-  }
-
-  @override
-  void initState() {
-    _controller = CalendarCubit();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    print('dispose');
-    _controller.close();
-    super.dispose();
   }
 }

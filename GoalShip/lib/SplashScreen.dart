@@ -7,41 +7,43 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primaryColorLight: Colors.white,
-        primaryColorDark: Colors.black,
-        appBarTheme: AppBarTheme(
-            backgroundColor: Colors.white,
-            titleTextStyle: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 19.0),
-            elevation: 0.5),
-        colorScheme: ColorScheme.fromSwatch()
-            .copyWith(secondary: Color(0xA63DC5DB))
-            .copyWith(background: Colors.white),
-      ),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: AnimatedSplashScreen(
-          splash: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image(
-                image: AssetImage('assets/target.png'),
-                height: 35.0,
-                width: 35.0,
-              ),
-              Text(
-                "GoalShip",
-                style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
-              ),
-            ],
+        theme: ThemeData(
+          brightness: Brightness.light,
+          primaryColorLight: Colors.white,
+          primaryColorDark: Colors.black,
+          appBarTheme: AppBarTheme(
+            color: Colors.black26,
           ),
-          nextScreen: HomePage(),
+          colorScheme: ColorScheme.fromSwatch()
+              .copyWith(secondary: Color(0xFFE87CE4))
+              .copyWith(background: Colors.white),
         ),
-      ),
-    );
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          body: AnimatedSplashScreen(
+              splash: Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "GoalShip",
+                      style: TextStyle(
+                          fontSize: 30.0, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      "Powered by",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.black26),
+                    ),
+                    Text(
+                      "Team Hashira",
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+              nextScreen: HomePage()),
+        ));
   }
 }
