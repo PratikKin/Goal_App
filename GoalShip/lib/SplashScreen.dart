@@ -1,49 +1,50 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-
-import 'HomePage.dart';
+import 'package:goalship/welcome.dart';
 
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(
-          brightness: Brightness.light,
-          primaryColorLight: Colors.white,
-          primaryColorDark: Colors.black,
-          appBarTheme: AppBarTheme(
-            color: Colors.black26,
-          ),
-          colorScheme: ColorScheme.fromSwatch()
-              .copyWith(secondary: Color(0xFFE87CE4))
-              .copyWith(background: Colors.white),
+      title: 'GoalShip',
+      theme: ThemeData(
+        brightness: Brightness.light,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.white,
+          titleTextStyle: TextStyle(
+              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 19.0),
+          elevation: 0.0,
         ),
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          body: AnimatedSplashScreen(
-              splash: Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "GoalShip",
-                      style: TextStyle(
-                          fontSize: 30.0, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      "Powered by",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.black26),
-                    ),
-                    Text(
-                      "Team Hashira",
-                      style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold),
-                    ),
-                  ],
+        colorScheme: ColorScheme.fromSwatch()
+            .copyWith(secondary: Color(0xA63DC5DB))
+            .copyWith(background: Colors.white),
+      ),
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: AnimatedSplashScreen(
+          splashTransition: SplashTransition.scaleTransition,
+          curve: Curves.decelerate,
+          splash: Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image(
+                  image: AssetImage(
+                    'assets/target.png',
+                  ),
+                  width: 40.0,
+                  height: 40.0,
                 ),
-              ),
-              nextScreen: HomePage()),
-        ));
+                Text(
+                  "GoalShip",
+                  style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+          nextScreen: Main(),
+        ),
+      ),
+    );
   }
 }

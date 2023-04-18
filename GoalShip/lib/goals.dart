@@ -1,58 +1,84 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:inline_calendar/inline_calendar.dart';
+import 'package:goalship/friends.dart';
 
 import 'Add_Goal.dart';
 import 'Calender.dart';
+import 'HomePage.dart';
 import 'Settings.dart';
-import 'goals.dart';
 
-Color themeColour = Color(0xA63DC5DB);
-Color themeBackGrnd = Colors.white;
+List<Widget> UserHobbyList = [];
+int count = 0;
+int limit = 2;
 
-void showAddGoal(BuildContext ctx) {
-  showModalBottomSheet(
-    context: ctx,
-    builder: (_) {
-      return Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        height: MediaQuery.of(ctx).size.height * 1.0,
-        child: Add_Goal(),
-      );
-    },
-    useSafeArea: true,
-    isScrollControlled: true,
-    // shape: CircleBorder(),
-  );
-}
+class PersonalPage extends StatefulWidget {
+  const PersonalPage({Key? key}) : super(key: key);
 
-class HomePage extends StatefulWidget {
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<PersonalPage> createState() => _PersonalPageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  late CalendarCubit _controller;
-
-  // For bottom drawer use modalBottomSheet
+class _PersonalPageState extends State<PersonalPage> {
+  void showAddGoal(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          height: MediaQuery.of(ctx).size.height * 1.0,
+          child: Add_Goal(),
+        );
+      },
+      useSafeArea: true,
+      isScrollControlled: true,
+      shape: CircleBorder(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xA63DC5DB),
+        backgroundColor: Colors.white,
         elevation: 0.0,
-        title: Text("GoalShip"),
-        bottom: InlineCalendar(
-          controller: _controller,
-          onChange: (DateTime d) => print(d),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("Personal",
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: TextColour)),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => FriendsSection()));
+              },
+              child: FaIcon(
+                FontAwesomeIcons.user,
+                color: Colors.black,
+              ),
+            )
+          ],
         ),
       ),
-      body: Container(
-        color: themeBackGrnd,
+      body: Column(
+        children: <Widget>[
+          Container(
+            height: 250.0,
+            margin: EdgeInsets.all(10.0),
+            decoration: BoxDecoration(
+              color: themeColour,
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+          ),
+          Expanded(
+              child: GridView.count(
+            crossAxisCount: limit,
+            children: UserHobbyList,
+          )),
+        ],
       ),
       bottomNavigationBar: BottomAppBar(
           elevation: 0.0,
@@ -137,18 +163,5 @@ class _HomePageState extends State<HomePage> {
             ],
           )),
     );
-  }
-
-  @override
-  void initState() {
-    _controller = CalendarCubit();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    print('dispose');
-    _controller.close();
-    super.dispose();
   }
 }
