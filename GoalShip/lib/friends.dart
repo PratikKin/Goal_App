@@ -1,98 +1,163 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'HomePage.dart';
+import 'Calender.dart';
+import 'Settings.dart';
+import 'Add_Goal.dart';
 
-void main() {
-  runApp(MyApp());
+List<Widget> UserHobbyList = [];
+int count = 0;
+int limit = 2;
+
+class PersonalPage extends StatefulWidget {
+  @override
+  State<PersonalPage> createState() => _PersonalPageState();
 }
 
-class MyApp extends StatelessWidget {
-  final List<String> items = [    'Jacob',    'Ekansh',    'Pratik',    'Sam',    'Sarah',    'Item 1',    'Item 2',    'Item 3',    'Item 4',    'Item 5',  ];
+class _PersonalPageState extends State<PersonalPage> {
+  void showAddGoal(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          height: MediaQuery.of(ctx).size.height * 1.0,
+          child: Add_Goal(),
+        );
+      },
+      useSafeArea: true,
+      isScrollControlled: true,
+      shape: CircleBorder(),
+    );
+  }
 
+  final Color themeColour = Color(0xFFE8B3E4);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'List View Demo',
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          title: Text(
-            'Friends',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 28,
-              fontFamily: 'Montserrat',
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          actions: [
-            IconButton(
-              icon: Padding(
-                padding: const EdgeInsets.only(left: 0),
-                child: Icon(
-                  Icons.language,
-                  size: 35,
-
-                  color: Colors.black,
-                ),
-              ),
-              onPressed: () {
-                // Add your onPressed action here
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0.0,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("Personal",
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: TextColour)),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => PersonalPage()));
               },
-            ),
+              child: FaIcon(
+                FontAwesomeIcons.user,
+                color: TextColour,
+              ),
+            )
           ],
         ),
-        body: Padding(
-          padding: EdgeInsets.only(top: 16),
-          child: ListView.builder(
-            itemCount: items.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding:
-                EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                child: Card(
-                  color: Colors.grey[200],
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Container(
-                    height: 70,
-                    width: double.infinity,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.only(left: 8.0),
-                          child: Container(
-                            height: double.infinity,
-                            alignment: Alignment.centerLeft,
-                            child: CircleAvatar(
-                              child: Icon(Icons.person),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 4,
-                          child: ListTile(
-                            title: Text(items[index]),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: Icon(
-                            Icons.emoji_events,
-                            size: 32,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
+      ),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: Container(
+              margin: EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                color: themeColour,
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+            ),
+          ),
+          Expanded(
+              child: GridView.count(
+            crossAxisCount: limit,
+            children: UserHobbyList,
+          )),
+        ],
+      ),
+      bottomNavigationBar: BottomAppBar(
+          elevation: 0.0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              //1
+              GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => HomePage()));
+                    });
+                  },
+                  child: Icon(
+                    Icons.home,
+                    color: Colors.black,
+                    size: 30.0,
+                  )),
+              //2
+              GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Calender_Page()));
+                    });
+                  },
+                  child: FaIcon(
+                    FontAwesomeIcons.calendar,
+                    color: Colors.black,
+                    size: 20.0,
+                  )),
+              //3
+              Padding(
+                padding: const EdgeInsets.only(bottom: 15.0),
+                child: GestureDetector(
+                  onTap: () {
+                    showAddGoal(context);
+                  },
+                  child: CircleAvatar(
+                    backgroundColor: themeColour,
+                    child: Icon(
+                      Icons.add,
+                      color: Colors.black,
+                      size: 35.0,
                     ),
                   ),
                 ),
-              );
-            },
-          ),
-        ),
-      ),
+              ),
+              //4
+              GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PersonalPage()));
+                    });
+                  },
+                  child: FaIcon(
+                    FontAwesomeIcons.userGroup,
+                    color: Colors.black,
+                    size: 20.0,
+                  )),
+              //5
+              GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Settings_Page()));
+                    });
+                  },
+                  child: FaIcon(
+                    Icons.settings,
+                    color: Colors.black,
+                    size: 30.0,
+                  )),
+            ],
+          )),
     );
   }
 }
